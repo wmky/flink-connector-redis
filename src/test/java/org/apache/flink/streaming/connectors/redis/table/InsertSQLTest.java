@@ -25,12 +25,12 @@ public class InsertSQLTest {
         EnvironmentSettings environmentSettings = EnvironmentSettings.newInstance().useBlinkPlanner().inStreamingMode().build();
         StreamTableEnvironment tEnv = StreamTableEnvironment.create(env, environmentSettings);
 
-        String ddl = "create table sink_redis(username VARCHAR, passport VARCHAR) with ( 'connector'='redis', " +
-                "'host'='10.11.80.147','port'='7001', 'redis-mode'='single','password'='****','" +
-                REDIS_COMMAND + "'='" + RedisCommand.SET + "')" ;
-
+        String ddl = "create table sink_redis7(username VARCHAR, passport VARCHAR) with ( 'connector'='redis', " +
+                "'host'='172.16.18.2','port'='6900','key.ttl'='300','redis-mode'='single','" +
+                REDIS_COMMAND + "'='" + RedisCommand.SETEX + "')" ;
+        System.out.println(ddl);
         tEnv.executeSql(ddl);
-        String sql = " insert into sink_redis select * from (values ('no_primary_key', 'test11'))";
+        String sql = " insert into sink_redis7 select * from (values ('no_primary_key100123220', 'test11'))";
         TableResult tableResult = tEnv.executeSql(sql);
         tableResult.getJobClient().get()
                 .getJobExecutionResult()
@@ -110,7 +110,6 @@ public class InsertSQLTest {
         String ddl = "create table sink_redis(username VARCHAR, level varchar, age varchar, passport VARCHAR,  primary key (username, level) not enforced) with ( 'connector'='redis', " +
                 "'cluster-nodes'='" + CLUSTERNODES + "','redis-mode'='cluster','additional-key'='hash_table_test', 'password'='****','" +
                 REDIS_COMMAND + "'='" + RedisCommand.HSET + "', 'maxIdle'='2', 'minIdle'='1'  )" ;
-
         tEnv.executeSql(ddl);
         String sql = " insert into sink_redis select * from (values ('multi_primary_key', '3', '1', 'test3'))";
         TableResult tableResult = tEnv.executeSql(sql);
@@ -119,7 +118,6 @@ public class InsertSQLTest {
                 .get();
         System.out.println(sql);
     }
-
 
 
     @Test

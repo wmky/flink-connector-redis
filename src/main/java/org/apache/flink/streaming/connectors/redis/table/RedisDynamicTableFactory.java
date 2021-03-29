@@ -53,6 +53,7 @@ public class RedisDynamicTableFactory implements DynamicTableSinkFactory {
         options.add(RedisOptions.REDISMODE);
         options.add(RedisOptions.ADDITIONALKEY);
         options.add(RedisOptions.PARTITION_COLUMN);
+        options.add(RedisOptions.REDIS_KEY_TTL);
         return options;
     }
 

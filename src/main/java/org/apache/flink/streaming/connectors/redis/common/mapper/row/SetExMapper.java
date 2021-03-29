@@ -35,4 +35,8 @@ public class SetExMapper extends RowRedisMapper {
     public SetExMapper(String additionalKey, String partitionColumn) {
         super(additionalKey, RedisCommand.SETEX, partitionColumn);
     }
+
+    public SetExMapper(Integer ttl,String additionalKey, String partitionColumn) {
+        super(ttl,additionalKey, RedisCommand.SETEX, partitionColumn);
+    }
 }

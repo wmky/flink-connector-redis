@@ -111,4 +111,10 @@ public class RedisOptions {
             .noDefaultValue()
             .withDescription("Optional partition-column for connect to redis sentinels");
 
+    public static final ConfigOption<String> REDIS_KEY_TTL = ConfigOptions
+            .key("key.ttl")
+            .stringType()
+            .noDefaultValue()
+            .withDescription("Optional key.ttl for redis key active time");
+
 }
