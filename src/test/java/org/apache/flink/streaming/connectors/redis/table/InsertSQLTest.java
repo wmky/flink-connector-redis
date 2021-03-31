@@ -24,18 +24,17 @@ public class InsertSQLTest {
 
         EnvironmentSettings environmentSettings = EnvironmentSettings.newInstance().useBlinkPlanner().inStreamingMode().build();
         StreamTableEnvironment tEnv = StreamTableEnvironment.create(env, environmentSettings);
-
         String ddl = "create table sink_redis7(username VARCHAR, passport VARCHAR) with ( 'connector'='redis', " +
                 "'host'='172.16.18.2','port'='6900','key.ttl'='300','redis-mode'='single','" +
                 REDIS_COMMAND + "'='" + RedisCommand.SETEX + "')" ;
         System.out.println(ddl);
         tEnv.executeSql(ddl);
-        String sql = " insert into sink_redis7 select * from (values ('no_primary_key100123220', 'test11'))";
+        String sql = " insert into sink_redis7 select * from (values ('no_primary_key100123220', 'test11'),('no_primary_key1s00123220','asfwe'),('no_primary_key1s00123220','asfwe'))";
         TableResult tableResult = tEnv.executeSql(sql);
         tableResult.getJobClient().get()
                 .getJobExecutionResult()
                 .get();
-        System.out.println(sql);
+
     }
 
     @Test

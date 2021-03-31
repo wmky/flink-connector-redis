@@ -28,11 +28,11 @@ public class HSetMapper extends RowRedisMapper {
         super(RedisCommand.HSET);
     }
 
-    public HSetMapper(int ttl, String partitionColumn) {
+    public HSetMapper(Integer ttl, String partitionColumn) {
         super(ttl,  RedisCommand.HSET, partitionColumn);
     }
 
-    public HSetMapper(int ttl, String additionalKey, String partitionColumn) {
+    public HSetMapper(Integer ttl, String additionalKey, String partitionColumn) {
         super(ttl, additionalKey, RedisCommand.HSET, partitionColumn);
     }
 
