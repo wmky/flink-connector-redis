@@ -66,6 +66,10 @@ public class RedisCommandsContainerBuilder {
         genericObjectPoolConfig.setMaxIdle(jedisPoolConfig.getMaxIdle());
         genericObjectPoolConfig.setMaxTotal(jedisPoolConfig.getMaxTotal());
         genericObjectPoolConfig.setMinIdle(jedisPoolConfig.getMinIdle());
+        genericObjectPoolConfig.setTestWhileIdle(true);
+        genericObjectPoolConfig.setMinEvictableIdleTimeMillis(60000);
+        genericObjectPoolConfig.setTimeBetweenEvictionRunsMillis(30000);
+        genericObjectPoolConfig.setNumTestsPerEvictionRun(-1);
 
         JedisPool jedisPool = new JedisPool(genericObjectPoolConfig, jedisPoolConfig.getHost(),
             jedisPoolConfig.getPort(), jedisPoolConfig.getConnectionTimeout(), jedisPoolConfig.getPassword(),
