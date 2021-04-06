@@ -44,7 +44,7 @@ public class RedisDynamicTableSink implements DynamicTableSink {
 
     @Override
     public ChangelogMode getChangelogMode(ChangelogMode requestedMode) {
-        validatePrimaryKey(requestedMode);
+//        validatePrimaryKey(requestedMode);
         return ChangelogMode.newBuilder()
                 .addContainedKind(RowKind.INSERT)
                 .addContainedKind(RowKind.DELETE)
