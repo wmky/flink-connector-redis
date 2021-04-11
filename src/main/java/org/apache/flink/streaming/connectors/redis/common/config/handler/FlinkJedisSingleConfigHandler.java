@@ -43,7 +43,7 @@ public class FlinkJedisSingleConfigHandler implements FlinkJedisConfigHandler {
         FlinkJedisPoolConfig.Builder builder =  new FlinkJedisPoolConfig.Builder().setHost(host).setPassword(password);
         builder.setPort(config.get(RedisOptions.PORT));
         builder.setMaxIdle(config.get(RedisOptions.MAXIDLE)).setMinIdle(config.get(RedisOptions.MINIDLE)).setMaxTotal(config.get(RedisOptions.MAXTOTAL)).setTimeout(config.get(RedisOptions.TIMEOUT));
-
+        builder.setDatabase(config.get(RedisOptions.DATABASE));
         return builder.build();
     }
 
